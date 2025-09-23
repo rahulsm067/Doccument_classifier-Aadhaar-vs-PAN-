@@ -27,7 +27,7 @@ if uploaded_files:
                 save_path = f"temp_{idx}.jpg"
                 img = Image.open(uploaded_file)
                 
-                # Fix for RGBA mode - convert to RGB before saving as JPEG
+                
                 if img.mode == 'RGBA':
                     # Create a white background
                     background = Image.new('RGB', img.size, (255, 255, 255))

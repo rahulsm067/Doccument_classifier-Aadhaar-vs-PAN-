@@ -26,9 +26,21 @@ if uploaded_files:
                 # Save temporarily
                 save_path = f"temp_{idx}.jpg"
                 img = Image.open(uploaded_file)
-                img.save(save_path)
+                
+                # Fix for RGBA mode - convert to RGB before saving as JPEG
+                if img.mode == 'RGBA':
+                    # Create a white background
+                    background = Image.new('RGB', img.size, (255, 255, 255))
+                    # Paste the RGBA image onto the white background using alpha channel as mask
+                    background.paste(img, mask=img.split()[-1])
+                    img = background
+                elif img.mode not in ['RGB', 'L']:
+                    # Convert any other mode to RGB
+                    img = img.convert('RGB')
+                
+                img.save(save_path, 'JPEG')
 
-                st.image(img, caption=f"Document {idx}", use_container_width=True)
+                st.image(img, caption=f"Document {idx}", width='stretch')
 
                 # Show progress
                 progress_text = f"Classifying Document {idx}/{len(uploaded_files)}..."

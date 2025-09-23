@@ -14,10 +14,10 @@ class CNNClassifier:
         """
         self.device = device or ("cuda" if torch.cuda.is_available() else "cpu")
 
-        # Load pretrained ResNet18 and modify for classification (MUST match training definition)
+        # Load pretrained ResNet18 and modify for classification 
         self.model = models.resnet18(weights=models.ResNet18_Weights.IMAGENET1K_V1)
         self.model.fc = nn.Sequential(
-            nn.Dropout(0.4),  # must match train_cnn.py
+            nn.Dropout(0.4),  
             nn.Linear(self.model.fc.in_features, num_classes)
         )
         self.model.load_state_dict(torch.load(model_path, map_location=self.device))

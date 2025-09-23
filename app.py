@@ -9,7 +9,7 @@ classifier = CNNClassifier(model_path="models/cnn_model.pth")
 
 # Streamlit UI
 st.set_page_config(page_title="Document Classifier", layout="wide")
-st.title("📄 Document Classifier: Aadhaar vs PAN ")
+st.title(" Document Classifier: Aadhaar vs PAN ")
 
 uploaded_files = st.file_uploader(
     "Upload Document Image(s)",
@@ -53,9 +53,9 @@ if uploaded_files:
 
                 # Show results
                 if conf < 0.6:
-                    st.warning(f"⚠️ Document {idx}: Low confidence prediction.")
+                    st.warning(f" Document {idx}: Low confidence prediction.")
                 else:
-                    st.success(f"✅ Document {idx}: {label}")
+                    st.success(f" Document {idx}: {label}")
                     st.info(f"Confidence: {conf:.2f}")
                     st.info(f"Inference Time: {infer_time:.2f} sec")
 

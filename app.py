@@ -40,7 +40,7 @@ if uploaded_files:
                 
                 img.save(save_path, 'JPEG')
 
-                st.image(img, caption=f"Document {idx}", width='stretch')
+                st.image(img, caption=f"Document {idx}", width=250)
 
                 # Show progress
                 progress_text = f"Classifying Document {idx}/{len(uploaded_files)}..."
